@@ -1,29 +1,42 @@
 
-
-Usage Concept:
-
-```bash
-device_manager.py --single "zgX"
-```
-
-```bash
-zgmanager.py --from "zgX" --to "zgY"
-```
-
-for example:
-where   X = 101   &   Y = 104   queris >>>   101, 102, 103, 104
-
-
-//
-
-
 # device_manager.py
 
-## --single "zgX"
+## --gateway "zgX"
 
-1. query_gateway.py --gateway zgX
-	> generates zgX/zgX_gwdevs.csv
-	   > contains list of n devices
-2. query_ device.py --gateway zgX --device n
-	> runs above n iterations in tandem
-3. 
+	1. runs `python3 query_gateway.py --gateway zgX` <-- "zgX" arg inherited
+		> generates `data/zgX/zgX_gwdevs.csv` <-- contains list of devices
+
+	2. Once `query_gateway.py` process has completed;
+		> generates `devs2query` array from freindly_name colum
+
+	3. For every device in `devs2query` run `query_device.py --gateway "zg" --device "[devs2query(n-1)]"`
+		> each itteration appends a reachable device to `data/zgX/zgX_devInfo.csv`
+
+---
+
+
+# rename.py
+
+## --gateway "zgX"
+
+1. Goes through `data/zgX/zgX_devInfo.csv`
+	- rename friendly_names from ieeeAdress format to zgX-Y format (if freindly_name == ieeeAddress ... )
+	- deletes ieeeAddress duplicates (keeps newest?)
+	- update timestamp of devices WHEN row updated
+
+---
+
+# zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" or "rename"
+
+	1. Creates range of [from-to] `gws2do` 
+
+	2. For each gateway in `gws2query` run action
+
+---
+
+`zgX/zgX_devInfo.csv` needed enhancements:
+- **Issue 1.**: `ieeeAddress` grabbed in appending process
+- **Issue 2.**: Each appending instance should be time-stamped with time of query
+
+Other needed improvements:
+- every node to host program ? ... Executed with flask?
