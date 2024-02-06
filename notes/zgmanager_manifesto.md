@@ -2,13 +2,21 @@
 - [x] + mqtt_sub.py
 - [x] + parse_dev.py
 - [x] + parse_gw.py
-- [ ] - query_device.py <--(some fixing needed)
+- [ ] - query_device.py <-- fixes needed:
+	- [ ] **Issue 1.**: `ieeeAddress` grabbed in appending process
+	- [ ] **Issue 2.**: Each appending instance should be time-stamped with time of query
+
 - [x] + query_gateway.py
 
 - [ ] 1. - device_manager.py --gateway "zgX"
 - [ ] 2. - rename.py --gateway "zgX"
 - [ ] 3. - zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" or "rename"
 
+---
+
+
+
+---
 
 # device_manager.py
 
@@ -45,9 +53,5 @@
 
 ---
 
-`query_device.py` needed enhancements:
-- **Issue 1.**: `ieeeAddress` grabbed in appending process
-- **Issue 2.**: Each appending instance should be time-stamped with time of query
-
-Other needed improvements:
+Needed improvements:
 - every node to host program ? ... Executed with flask?
