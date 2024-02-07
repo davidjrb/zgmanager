@@ -20,7 +20,7 @@ mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/get" -m ""
 - **Gateway's devices (subscribe)**
 
 ```bash
-mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/"
+mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices"
 ```
 
 ---
