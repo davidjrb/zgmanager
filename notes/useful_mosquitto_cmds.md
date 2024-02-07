@@ -1,11 +1,13 @@
 # Quick commands
 
-
+---
 
 ## PUB rename (publish)
 ```bash
 mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/rename" -m '{"old": "LAMPI0001", "new": "LAMPI666"}'
 ```
+
+---
 
 ## PUB zg all devices (publish)
 
@@ -13,11 +15,15 @@ mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/rename" -m '{"old": "LAM
 mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/get" -m ""
 ```
 
+---
+
 ## SUB zg all devices (listen)
 
 ```bash
 mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/"
 ```
+
+---
 
 ## PUB device color (publish)
 
@@ -30,6 +36,8 @@ mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/device_name/get" -m '{"color": ""}'
 ```bash
 mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/device_name"
 ```
+
+---
 
 # Command Index
 
