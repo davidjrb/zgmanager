@@ -1,3 +1,18 @@
+	- [ ] **Issue 1.**: `ieeeAddress` grabbed in appending process
+
+	This is tricky because there is no reference to `ieeeAddress` in color payload
+
+friendly_name,brightness,color,linkquality
+0x00212effff0c20a1,84,"{'x': 0.1355, 'y': 0.0399}",255
+0x00212effff0c6783,84,"{'x': 0.351, 'y': 0.9847}",255
+LAMPI666,100,"{'x': 0.7006, 'y': 0.2993}",255
+zg2-1,100,"{'x': 0.7006, 'y': 0.2993}",255
+
+
+
+
+---
+
 - [x] + mqtt_pub.py
 - [x] + mqtt_sub.py
 - [x] + parse_dev.py

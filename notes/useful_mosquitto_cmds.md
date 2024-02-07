@@ -2,22 +2,22 @@
 
 ---
 
-## PUB rename (publish)
+- **Rename (publish)**
 ```bash
 mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/rename" -m '{"old": "LAMPI0001", "new": "LAMPI666"}'
 ```
 
 ---
 
-## PUB zg all devices (publish)
+## Gateway's devices (get all)
+
+- **Gateway's devices (publish)**
 
 ```bash
 mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/get" -m ""
 ```
 
----
-
-## SUB zg all devices (listen)
+- **Gateway's devices (subscribe)**
 
 ```bash
 mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/"
@@ -25,13 +25,15 @@ mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/bridge/config/devices/"
 
 ---
 
-## PUB device color (publish)
+## Query device color state
+
+- **Single device color state (publish)**
 
 ```bash
 mosquitto_pub -h 10.0.0.2 -t "zigbee2mqtt/device_name/get" -m '{"color": ""}'
 ```
 
-## SUB device color (listen)
+- **Single device color state (subscribe)**
 
 ```bash
 mosquitto_sub -h 10.0.0.2 -t "zigbee2mqtt/device_name"
