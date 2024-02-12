@@ -36,9 +36,9 @@ Node Progress:
 ---
 
 **Coding:**
-- ! [ ] add_to_group (device_manager.py)
-- ! [ ] change_color.py (brightness and fade_time as well)
-- ! [ ] GUI
+- [ ] add_to_group (device_manager.py)
+- [ ] change_color.py (brightness and fade_time as well)
+- [ ] GUI
 		1. map
 		2. color_picker
 ---
@@ -46,32 +46,32 @@ Node Progress:
 ### 2do Low Priority:
 
 Scripts:
-- ? [ ] zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" --dmflags
+- [ ] zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" --dmflags
 		1. Creates range of [from-to] `gws2do` 
 		2. For each gateway in `gws2query` run action
-- ? [ ] alarms / logging / backups / charts / tables
+- [ ] alarms / logging / backups / charts / tables
 
 Subroutines:
-- ? [ ] timestamp csv entries
-- ? [ ] human readible last_seen
-- ? [ ] rename_devices
-- ? [ ] `ieeeAddress` grabbed in devinfo update process
+- [ ] timestamp csv entries
+- [ ] human readible last_seen
+- [ ] rename_devices
+- [ ] `ieeeAddress` grabbed in devinfo update process
 
 ---
 
 **Done:**
-- ! [x] mqtt_pub.py
-- ! [x] mqtt_sub.py
-- ! [x] parse_dev.py
-- ! [x] parse_gw.py
-- ! [x] query_device.py
+- [x] mqtt_pub.py
+- [x] mqtt_sub.py
+- [x] parse_dev.py
+- [x] parse_gw.py
+- [x] query_device.py
 
 ---
 
 **Directory Structure:**
 
+```bash
 zgmanager/
-~/zgmanager (main) > eza --tree
 .
 │
 ├── data
@@ -114,3 +114,4 @@ zgmanager/
 ├── parse_gw.py
 ├── query_device.py
 └── query_gateway.py
+```
