@@ -1,14 +1,3 @@
-	- [ ] **Issue 1.**: `ieeeAddress` grabbed in appending process
-
-	This is tricky because there is no reference to `ieeeAddress` in color payload
-
-friendly_name,brightness,color,linkquality
-0x00212effff0c20a1,84,"{'x': 0.1355, 'y': 0.0399}",255
-0x00212effff0c6783,84,"{'x': 0.351, 'y': 0.9847}",255
-LAMPI666,100,"{'x': 0.7006, 'y': 0.2993}",255
-zg2-1,100,"{'x': 0.7006, 'y': 0.2993}",255
-
-
 
 
 ---
@@ -17,41 +6,32 @@ zg2-1,100,"{'x': 0.7006, 'y': 0.2993}",255
 - [x] + mqtt_sub.py
 - [x] + parse_dev.py
 - [x] + parse_gw.py
-- [ ] - query_device.py <-- fixes needed:
-	- [ ] **Issue 1.**: `ieeeAddress` grabbed in appending process
-	- [ ] **Issue 2.**: Each appending instance should be time-stamped with time of query
-
+- [x] + query_device.py
+	- [ ] 
+	- [ ] **Issue 1.**: 
+	- [ ] **Issue 2.**: 
+	- [ ] **Issue 3.**: `ieeeAddress` grabbed in devinfo update process
+	- [ ] **Issue 4.**: Each csv instance should be time-stamped with time of update
+	- [ ] **Issue 5.**: --rename flag (maybe?)
 - [x] + query_gateway.py
 
-- [ ] 1. - device_manager.py --gateway "zgX"
-- [ ] 2. - rename.py --gateway "zgX"
-- [ ] 3. - zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" or "rename"
+- [ ] - add_to_group.py
+
+- [ ] - rename.py --gateway "zgX"
+
+- [ ] - zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" or "rename"
+
+- [ ] - zigbee2mqtt needs to be updated to 1.35.1 on all gateways or (if all else fails) reversed to `10. Nov 2023` version
+	- https://github.com/Koenkk/zigbee2mqtt/releases
+
+- [ ] - ConbeeII fw needs upgrade (see dresden-elektronik.md)
+
+- [ ] - backup
 
 ---
 
+ideas:
 
-
----
-
-# device_manager.py
-
-## --gateway "zgX"
-
-	1. runs `python3 query_gateway.py --gateway zgX` <-- "zgX" arg inherited
-		> generates `data/zgX/zgX_gwdevs.csv` <-- contains list of devices
-
-	2. Once `query_gateway.py` process has completed;
-		> generates `devs2query` array from freindly_name colum
-
-	3. For every device in `devs2query` run `query_device.py --gateway "zg" --device "[devs2query(n-1)]"`
-		> each itteration appends a reachable device to `data/zgX/zgX_devInfo.csv`
-
----
-
-
-# rename.py
-
-## --gateway "zgX"
 
 1. Goes through `data/zgX/zgX_devInfo.csv`
 	- rename friendly_names from ieeeAdress format to zgX-Y format (if freindly_name == ieeeAddress ... )
@@ -65,6 +45,11 @@ zg2-1,100,"{'x': 0.7006, 'y': 0.2993}",255
 	1. Creates range of [from-to] `gws2do` 
 
 	2. For each gateway in `gws2query` run action
+
+---
+
+# add_to_group.py
+
 
 ---
 

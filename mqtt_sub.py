@@ -16,7 +16,7 @@ def parse_arguments():
     parser.add_argument('--output', type=str, required=True, help='Output file for messages')
     args = parser.parse_args()
     output_file_path = args.output
-    print(f"Host: {args.host}, Port: {args.port}, Topic: {args.topic}, Output File: {args.output}")
+    print(f"[mqtt_sub.py] Host: {args.host}, Port: {args.port}, Topic: {args.topic}, Output File: {args.output}")
     return args
 
 # Callback for when a message is received

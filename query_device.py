@@ -10,7 +10,7 @@ def parse_arguments():
     parser.add_argument('--device', type=str, required=True)
     parser.add_argument('--pub_delay', type=int, default=2)
     parser.add_argument('--timeout', type=int, default=3, help='Timeout in seconds (default: 3)')
-    parser.add_argument('--skip_parse', action='store_true')
+    parser.add_argument('--skip_parse', action='store_true') # generates dev_json.txt from payload without running parse_dev.py
     return parser.parse_args()
 
 def start_mqtt_publish(gateway_ip, device, delay):
@@ -52,10 +52,11 @@ def main():
             if content:
 # 5. If no '--skip_parse' argument provided, proceed with parsing
                 if not args.skip_parse:
+# 6. "output_csv" is reference to parser's intended output file and path
                     subprocess.run(['python3', 'parse_dev.py', '--input', 'dev_json.txt', '--output', output_csv, '--device', args.device])
-# 6. break out of loop because of #4.
+# 7. break out of loop because of #4.
                 break
-# 7. stop the mqtt_sub-routine and exit
+# 8. stop the mqtt_sub-routine and exit
     mqtt_sub_process.terminate()
 
 if __name__ == "__main__":
