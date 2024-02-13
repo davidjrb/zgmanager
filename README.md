@@ -2,61 +2,51 @@
 ## Roadmap:
 ---
 
+**Coding:**
+
+- [ ] device_manager.py to automatically add devices to "alles" group
+- [ ] Improved monitoring number of responsive devices device_manager.py
+- [ ] GUI
+      1. map
+      2. color_picker
+
 ### 2do High Priority:
 
+**Documentation:**
+- [ ] collect thoughts and lessons learned into blog
+- [ ] update file tree documentation
+- [ ] add RGB.py documentation! <3
+
 **Dependencies:**
-- [ ] full upgrade rpi
-- [ ] make sure mosquitto is installed on all nodes
-- [ ] Conbee2 fw
-- [ ] z2m 1.35.1 upgrade
-- [ ] Field Work: re-pair as needed
+- [ ] rpi: full upgrade rpi
+- [ ] mqt: make sure mosquitto is installed on all nodes
+- [ ] CB2: Conbee2 fw
+- [ ] z2m: 1.35.1 upgrade
+- [ ] all: create "alles" group
+- [ ] rif: re-pair in field 
 
 ---
+
 Node Progress:
-|node |rpi|mqt|CB2|z2m|flw|
-|-----|---|---|---|---|---|
-| 101 |   |   |   |   |   |
-| 102 |   |   |   |   |   |
-| 103 |   |   |   |   |   |
-| 104 |   |   |   |   |   |
-| 105 |   |   |   |   |   |
-| 106 |   |   |   |   |   |
-| 107 | x | x | x | x | x |
-| 108 |   |   |   |   |   |
-| 109 |   |   |   |   |   |
-| 110 |   |   |   |   |   |
-| 111 |   |   |   |   |   |
-| 112 |   |   |   |   |   |
-| 113 |   |   |   |   |   |
-| 114 |   |   |   |   |   |
-| 115 |   |   |   |   |   |
-| 116 |   |   |   |   |   |
-| 117 |   |   |   |   |   |
-
-
----
-
-**Coding:**
-- [ ] add_to_group (device_manager.py)
-- [ ] change_color.py (brightness and fade_time as well)
-- [ ] GUI
-		1. map
-		2. color_picker
----
-
-### 2do Low Priority:
-
-Scripts:
-- [ ] zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" --dmflags
-		1. Creates range of [from-to] `gws2do` 
-		2. For each gateway in `gws2query` run action
-- [ ] alarms / logging / backups / charts / tables
-
-Subroutines:
-- [ ] timestamp csv entries
-- [ ] human readible last_seen
-- [ ] rename_devices
-- [ ] `ieeeAddress` grabbed in devinfo update process
+|node |rpi|mqt|CB2|z2m|all|rif|.
+|-----|---|---|---|---|---|---|.
+| 101 |   |   |   |   |   |   |.
+| 102 |   |   |   |   |   |   |.
+| 103 |   |   |   |   |   |   |.
+| 104 |   |   |   |   |   |   |.
+| 105 |   |   |   |   |   |   |.
+| 106 |   |   |   |   |   |   |.
+| 107 | x | x | x | x | x |   |.
+| 108 |   |   |   |   |   |   |.
+| 109 |   |   |   |   |   |   |.
+| 110 |   |   |   |   |   |   |.
+| 111 |   |   |   |   |   |   |.
+| 112 |   |   |   |   |   |   |.
+| 113 |   |   |   |   |   |   |.
+| 114 |   |   |   |   |   |   |.
+| 115 |   |   |   |   |   |   |.
+| 116 |   |   |   |   |   |   |.
+| 117 |   |   |   |   |   |   |.
 
 ---
 
@@ -66,6 +56,32 @@ Subroutines:
 - [x] parse_dev.py
 - [x] parse_gw.py
 - [x] query_device.py
+- [x] device_manager.py
+- [x] RBG.py (color & brightness)
+
+---
+
+### 2do Low Priority:
+
+Scripts:
+- [ ] RGB.py (brightness and fade_time as well)
+      https://www.zigbee2mqtt.io/devices/Mega23M12.html
+- [ ] zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" --dmflags
+		1. Creates range of [from-to] `gws2do` 
+		2. For each gateway in `gws2query` run action
+- [ ] alarms / logging / backups / charts / tables
+
+Subroutines:
+- [ ] timestamp csv entries (especially for responsive devices)
+- [ ] human readible last_seen
+- [ ] rename_devices
+- [ ] `ieeeAddress` grabbed in devinfo update process
+- [ ] whiteOFF & rgbON
+- [ ] fade time
+- [ ] GUI/py scheduling
+
+**Documentation:**
+- [ ] System overview / Flow Charts
 
 ---
 
@@ -74,8 +90,44 @@ Subroutines:
 ```bash
 zgmanager/
 .
-│
+├── common
+│  ├── backups
+│  │  └── zg_index.csv.20240212181138
+│  └── zg_index.csv
+├── data
+│  ├── zg101
+│  │  ├── backups
+│  │  ├── logs
+│  │  ├── zg101_devInfo.csv
+│  │  ├── zg101_gwdevs.csv
+│  │  ├── zg101_respondNow.csv
+│  │  └── zg101_unknown.csv
+....(more)
+│  ├── zg117
+│  │  ├── backups
+│  │  ├── logs
+│  │  ├── zg117_devInfo.csv
+│  │  ├── zg117_gwdevs.csv
+│  │  ├── zg117_respondNow.csv
+│  │  └── zg117_unknown.csv
+│  ├── copy2all.py
+│  ├── devInfo_TEMPLATE.csv
+│  ├── dirCreator.py
+│  └── gwdevs_TEMPLATE.csv
+├── docs
+│  ├── device_manager_manifesto.md
+│  ├── dresden-elektronik.md
+│  └── useful_mosquitto_cmds.md
+├── template_common
+│  ├── backups
+│  └── zg_index.csv
+├── template_data
+│  ├── copy2all.py
+│  ├── devInfo_TEMPLATE.csv
+│  ├── dirCreator.py
+│  └── gwdevs_TEMPLATE.csv
 ├── __init__.py
+├── colors.md
 ├── dev_json.txt
 ├── device_manager.py
 ├── gw_json.txt
@@ -86,27 +138,8 @@ zgmanager/
 ├── parse_unknown.py
 ├── query_device.py
 ├── query_gateway.py
-│
-├── data
-│  ├── copy2all.py
-│  ├── devInfo_TEMPLATE.csv
-│  ├── dirCreator.py
-│  ├── gwdevs_TEMPLATE.csv
-│  ├── zg101
-│  │  ├── backups
-│  │  ├── logs
-│  │  ├── zg101_devInfo.csv
-│  │  └── zg101_gwdevs.csv
-....(more)
-│  └── zg117
-│     ├── backups
-│     ├── logs
-│     ├── zg117_devInfo.csv
-│     └── zg117_gwdevs.csv
-│
-└── common
-	├── backups
-	└── zg_index.csv
+├── README.md
+└── RGB.py
 ```
 ---
 
