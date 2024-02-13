@@ -7,10 +7,8 @@
 - [ ] device_manager.py to automatically add devices to "alles" group
 - [ ] Improved monitoring number of responsive devices device_manager.py
 - [ ] GUI
-
-      1. map
-
-      2. color_picker
+      - map
+      - color_picker
 
 ### 2do High Priority:
 
@@ -69,10 +67,8 @@ Scripts:
 - [ ] RGB.py (brightness and fade_time as well)
       https://www.zigbee2mqtt.io/devices/Mega23M12.html
 - [ ] zgmanager.py --from "[zgX1]" --to "[zgX2]" --action "device_manager" --dmflags
-
-		1. Creates range of [from-to] `gws2do` 
-
-		2. For each gateway in `gws2query` run action
+		- Creates range of [from-to] `gws2do` 
+		- For each gateway in `gws2query` run action
 
 - [ ] alarms / logging / backups / charts / tables
 
