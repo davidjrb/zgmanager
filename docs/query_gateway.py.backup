@@ -22,21 +22,17 @@ def start_mqtt_subscribe(gateway_ip, device):
     topic = f"zigbee2mqtt/{device}"
     return subprocess.Popen(['python3', 'mqtt_sub.py', '--host', gateway_ip, '--port', '1883', '--topic', topic, '--output', 'dev_json.txt'])
 
-def add_to_group(gateway_ip, device):
-    topic = "zigbee2mqtt/bridge/request/group/members/add"
-    # Correctly include the device variable using an f-string
-    message = f'{{"group": "alles", "device": "{device}"}}'
-    subprocess.Popen(['python3', 'mqtt_pub.py', '--host', gateway_ip, '--port', '1883', '--topic', topic, '--message', message])
-
 def main():
     args = parse_arguments()
     gateway_ip = f'10.0.0.{args.gateway.lstrip("zg")}'
     output_csv = f'data/{args.gateway}/{args.gateway}_devInfo.csv'
-    responding_csv = f'data/{args.gateway}/{args.gateway}_responding.csv'
+    responding_csv = f'data/{args.gateway}/{args.gateway}responding.csv'
 
 # 1. it creates (and therefore overwrites) an empty 'dev_json.txt' file
     open('dev_json.txt', 'w').close()
 
+# 1b. creates (and therefore overwrites) an empty 'data/zgX/zgX_responding.csv' file
+    subprocess.run(['cp', 'data/devInfo_TEMPLATE.csv', responding_csv])
 
 # 2. starts the unsupervised subprocess of 'mqtt_pub.py' (pull pin and throw)
     start_mqtt_publish(gateway_ip, args.device, args.pub_delay)
@@ -61,10 +57,8 @@ def main():
 # 5. If no '--skip_parse' argument provided, proceed with parsing
                 if not args.skip_parse:
 # 6. "output_csv" is reference to parser's intended output file and path
-                    subprocess.run(['python3', 'parse_dev.py', '--input', 'dev_json.txt', '--output', responding_csv, '--device', args.device])
                     subprocess.run(['python3', 'parse_dev.py', '--input', 'dev_json.txt', '--output', output_csv, '--device', args.device])
-                    add_to_group(gateway_ip, args.device)
-                    open('dev_json.txt', 'w').close()
+                    subprocess.run(['python3', 'parse_dev.py', '--input', 'dev_json.txt', '--output', responding_csv, '--device', args.device])
 # 7. break out of loop because of #4.
                 break
 # 8. stop the mqtt_sub-routine and exit

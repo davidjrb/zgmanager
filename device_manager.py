@@ -163,6 +163,10 @@ def main():
     for key in device_counts:
         device_counts[key]['before'] = update_counts(gateway, key)
 
+    # Overwrite existing responding_csv file
+    responding_csv = f'data/{args.gateway}/{args.gateway}_responding.csv'
+    subprocess.run(['cp', 'data/devInfo_TEMPLATE.csv', responding_csv])
+
     # Run query_gateway with or without removing unknown devices
     run_query_gateway(gateway, remove_unknown=args.remove_unknown)
 
@@ -182,6 +186,17 @@ def main():
     # Display the summary and update common index
     print_device_counts_summary()
     append_to_common_index(gateway, device_counts)
+
+    try:
+        with open(responding_csv, 'r') as csvfile:
+            # Count lines and subtract one to exclude the header
+            responding_devices = sum(1 for row in csvfile) - 1
+    except FileNotFoundError:
+        print(f"[device_manager.py] The file {responding_csv} does not exist.")
+        responding_devices = 0
+
+    # Print the number of devices that responded
+    print("\n-----------------------\nDevices Responding:", responding_devices)
 
 if __name__ == "__main__":
     main()
